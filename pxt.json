@@ -6,7 +6,8 @@
         "radio": "*",
         "microphone": "*",
         "neopixel": "github:microsoft/pxt-neopixel#v0.7.5",
-        "pxt-pca9685": "github:jdarling/pxt-pca9685#v0.0.5"
+        "pxt-pca9685": "github:jdarling/pxt-pca9685#v0.0.5",
+        "Wait Until Custom Blocks": "github:teacherpinky/wait-until-blocks#v0.1.12"
     },
     "files": [
         "main.blocks",
@@ -24,5 +25,5 @@
     "supportedTargets": [
         "microbit"
     ],
-    "preferredEditor": "pyprj"
+    "preferredEditor": "blocksprj"
 }
