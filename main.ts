@@ -1,11 +1,68 @@
-function Forward() {
+function QuestionSix () {
+    CountDown()
+    TurnRight()
+    basic.pause(300)
+    Forward()
+    basic.pause(1000)
+    Stop()
+    music.playTone(440, music.beat(BeatFraction.Double))
+    basic.pause(1000)
+    TurnLeft()
+    basic.pause(200)
+    Forward()
+    basic.pause(500)
+    Stop()
+}
+function QuestionThree () {
+    CountDown()
+    TurnLeft()
+    basic.pause(150)
+    Forward()
+    basic.pause(1400)
+    Stop()
+    music.playTone(440, music.beat(BeatFraction.Double))
+    basic.pause(1000)
+    TurnRight()
+    basic.pause(500)
+    Forward()
+    basic.pause(1000)
+    Stop()
+}
+function QuestionFive () {
+    CountDown()
+    TurnRight()
+    basic.pause(350)
+    Forward()
+    basic.pause(500)
+    Stop()
+    music.playTone(262, music.beat(BeatFraction.Double))
+    basic.pause(1000)
+    TurnLeft()
+    basic.pause(800)
+    Forward()
+    basic.pause(400)
+    Stop()
+}
+function QuestionFour () {
+    CountDown()
+    Forward()
+    basic.pause(1200)
+    Stop()
+    music.playTone(494, music.beat(BeatFraction.Double))
+    basic.pause(1000)
+    TurnLeft()
+    basic.pause(200)
+    Forward()
+    basic.pause(1200)
+    Stop()
+}
+function Forward () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 40, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 42, 67)
 }
-
-function Colours(pause2: number) {
+function Colours (pause2: number) {
     strip.showColor(neopixel.colors(NeoPixelColors.Red))
     basic.pause(pause2)
     strip.showColor(neopixel.colors(NeoPixelColors.Orange))
@@ -22,22 +79,19 @@ function Colours(pause2: number) {
     basic.pause(pause2)
     strip.showColor(neopixel.colors(NeoPixelColors.Purple))
 }
-
-function TurnLeft() {
+function TurnLeft () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 20, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 55, 67)
 }
-
-function Back() {
+function Back () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 100, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 35, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 100, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 35, 67)
 }
-
-function QuestionTwo() {
+function QuestionTwo () {
     CountDown()
     Forward()
     basic.pause(1500)
@@ -48,23 +102,20 @@ function QuestionTwo() {
     basic.pause(700)
     Stop()
 }
-
-function Rainbow(pause22: number) {
+function Rainbow (pause22: number) {
     strip.showRainbow(1, 360)
     basic.pause(100)
 }
-
-function TurnRight() {
+function TurnRight () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 55, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 20, 67)
 }
-
-function QuestionOne() {
+function QuestionOne () {
     CountDown()
     TurnRight()
-    basic.pause(50)
+    basic.pause(150)
     Forward()
     basic.pause(1400)
     Stop()
@@ -76,10 +127,17 @@ function QuestionOne() {
     basic.pause(200)
     Stop()
 }
-
-function CountDown() {
-    
-    count = 2
+function FinalQuestion () {
+    CountDown()
+    music.playTone(440, music.beat(BeatFraction.Double))
+    for (let index = 0; index <= 4; index++) {
+        Colours(100)
+    }
+    music.playMelody("E D G F B A C5 B ", 120)
+    music.playMelody("F G A G B A B C5 ", 120)
+}
+function CountDown () {
+    count = 9
     while (count > 0) {
         basic.showNumber(count)
         music.playTone(349, music.beat(BeatFraction.Half))
@@ -88,23 +146,32 @@ function CountDown() {
     }
     music.playMelody("E B C5 A B G A F ", 120)
 }
-
-function Stop() {
+function Stop () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 0, 67)
 }
-
 let count = 0
-let strip : neopixel.Strip = null
+let strip: neopixel.Strip = null
 PCA9685.init(67, 0)
 strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
 strip.clear()
+Rainbow(100)
 Forward()
 basic.pause(500)
 Stop()
 WaitUntilBlocks.waitUntilButtonPressed(Button.A)
+QuestionFive()
+WaitUntilBlocks.waitUntilButtonPressed(Button.A)
+QuestionSix()
+WaitUntilBlocks.waitUntilButtonPressed(Button.A)
+FinalQuestion()
+WaitUntilBlocks.waitUntilButtonPressed(Button.A)
 QuestionOne()
 WaitUntilBlocks.waitUntilButtonPressed(Button.A)
 QuestionTwo()
+WaitUntilBlocks.waitUntilButtonPressed(Button.A)
+QuestionThree()
+WaitUntilBlocks.waitUntilButtonPressed(Button.A)
+QuestionFour()
