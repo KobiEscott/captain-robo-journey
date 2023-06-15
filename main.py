@@ -90,9 +90,6 @@ def QuestionTwo():
     Forward()
     basic.pause(700)
     Stop()
-def Rainbow(pause22: number):
-    strip.show_rainbow(1, 360)
-    basic.pause(100)
 def TurnRight():
     PCA9685.set_led_duty_cycle(PCA9685.LEDNum.LED1, 0, 67)
     PCA9685.set_led_duty_cycle(PCA9685.LEDNum.LED2, 55, 67)
@@ -115,8 +112,9 @@ def QuestionOne():
 def FinalQuestion():
     CountDown()
     music.play_tone(440, music.beat(BeatFraction.DOUBLE))
-    TopLights(100)
-    FrontLights(100)
+    for index in range(4):
+        TopLights(100)
+        FrontLights(100)
     music.play_melody("E D G F B A C5 B ", 120)
     music.play_melody("F G A G B A B C5 ", 120)
 def CountDown():
@@ -155,7 +153,9 @@ strip: neopixel.Strip = None
 PCA9685.init(67, 0)
 strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
 strip.clear()
-Rainbow(100)
+for index2 in range(4):
+    TopLights(100)
+    FrontLights(100)
 Forward()
 basic.pause(500)
 Stop()

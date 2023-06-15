@@ -1,4 +1,4 @@
-function QuestionSix() {
+function QuestionSix () {
     CountDown()
     TurnRight()
     basic.pause(250)
@@ -12,9 +12,12 @@ function QuestionSix() {
     Forward()
     basic.pause(500)
     Stop()
+    for (let index = 0; index < 4; index++) {
+        TopLights(100)
+        FrontLights(100)
+    }
 }
-
-function FrontLights(pause2: number) {
+function FrontLights (pause2: number) {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED5, 100, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED6, 100, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED7, 0, 67)
@@ -28,8 +31,7 @@ function FrontLights(pause2: number) {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED7, 100, 67)
     basic.pause(pause2)
 }
-
-function QuestionThree() {
+function QuestionThree () {
     CountDown()
     TurnLeft()
     basic.pause(150)
@@ -43,9 +45,12 @@ function QuestionThree() {
     Forward()
     basic.pause(1000)
     Stop()
+    for (let index = 0; index < 4; index++) {
+        TopLights(100)
+        FrontLights(100)
+    }
 }
-
-function QuestionFive() {
+function QuestionFive () {
     CountDown()
     TurnRight()
     basic.pause(350)
@@ -59,9 +64,12 @@ function QuestionFive() {
     Forward()
     basic.pause(400)
     Stop()
+    for (let index = 0; index < 4; index++) {
+        TopLights(100)
+        FrontLights(100)
+    }
 }
-
-function QuestionFour() {
+function QuestionFour () {
     CountDown()
     Forward()
     basic.pause(1200)
@@ -73,30 +81,30 @@ function QuestionFour() {
     Forward()
     basic.pause(1200)
     Stop()
+    for (let index = 0; index < 4; index++) {
+        TopLights(100)
+        FrontLights(100)
+    }
 }
-
-function Forward() {
+function Forward () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 40, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 42, 67)
 }
-
-function TurnLeft() {
+function TurnLeft () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 20, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 55, 67)
 }
-
-function Back() {
+function Back () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 100, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 35, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 100, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 35, 67)
 }
-
-function QuestionTwo() {
+function QuestionTwo () {
     CountDown()
     Forward()
     basic.pause(1500)
@@ -106,21 +114,18 @@ function QuestionTwo() {
     Forward()
     basic.pause(700)
     Stop()
+    for (let index = 0; index < 4; index++) {
+        TopLights(100)
+        FrontLights(100)
+    }
 }
-
-function Rainbow(pause22: number) {
-    strip.showRainbow(1, 360)
-    basic.pause(100)
-}
-
-function TurnRight() {
+function TurnRight () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 55, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 20, 67)
 }
-
-function QuestionOne() {
+function QuestionOne () {
     CountDown()
     TurnRight()
     basic.pause(150)
@@ -134,19 +139,22 @@ function QuestionOne() {
     Forward()
     basic.pause(200)
     Stop()
+    for (let index = 0; index < 4; index++) {
+        TopLights(100)
+        FrontLights(100)
+    }
 }
-
-function FinalQuestion() {
+function FinalQuestion () {
     CountDown()
     music.playTone(440, music.beat(BeatFraction.Double))
-    TopLights(100)
-    FrontLights(100)
+    for (let index = 0; index < 4; index++) {
+        TopLights(100)
+        FrontLights(100)
+    }
     music.playMelody("E D G F B A C5 B ", 120)
     music.playMelody("F G A G B A B C5 ", 120)
 }
-
-function CountDown() {
-    
+function CountDown () {
     count = 9
     while (count > 0) {
         basic.showNumber(count)
@@ -157,8 +165,7 @@ function CountDown() {
     music.playMelody("E B C5 A B G A F ", 120)
     basic.showIcon(IconNames.Heart)
 }
-
-function TopLights(pause23: number) {
+function TopLights (pause23: number) {
     strip.showColor(neopixel.colors(NeoPixelColors.Red))
     basic.pause(pause23)
     strip.showColor(neopixel.colors(NeoPixelColors.Orange))
@@ -175,20 +182,21 @@ function TopLights(pause23: number) {
     basic.pause(pause23)
     strip.showColor(neopixel.colors(NeoPixelColors.Purple))
 }
-
-function Stop() {
+function Stop () {
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED1, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED2, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED3, 0, 67)
     PCA9685.setLedDutyCycle(PCA9685.LEDNum.LED4, 0, 67)
 }
-
 let count = 0
-let strip : neopixel.Strip = null
+let strip: neopixel.Strip = null
 PCA9685.init(67, 0)
 strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
 strip.clear()
-Rainbow(100)
+for (let index = 0; index < 4; index++) {
+    TopLights(100)
+    FrontLights(100)
+}
 Forward()
 basic.pause(500)
 Stop()
