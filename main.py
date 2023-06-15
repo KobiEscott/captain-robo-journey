@@ -24,11 +24,6 @@ def TurnLeft():
     PCA9685.set_led_duty_cycle(PCA9685.LEDNum.LED2, 20, 67)
     PCA9685.set_led_duty_cycle(PCA9685.LEDNum.LED3, 0, 67)
     PCA9685.set_led_duty_cycle(PCA9685.LEDNum.LED4, 55, 67)
-
-def on_button_pressed_a():
-    QuestionTwo()
-input.on_button_pressed(Button.A, on_button_pressed_a)
-
 def Back():
     PCA9685.set_led_duty_cycle(PCA9685.LEDNum.LED1, 100, 67)
     PCA9685.set_led_duty_cycle(PCA9685.LEDNum.LED2, 35, 67)
@@ -85,3 +80,10 @@ strip: neopixel.Strip = None
 PCA9685.init(67, 0)
 strip = neopixel.create(DigitalPin.P5, 18, NeoPixelMode.RGB)
 strip.clear()
+Forward()
+basic.pause(500)
+Stop()
+WaitUntilBlocks.wait_until_button_pressed(Button.A)
+QuestionOne()
+WaitUntilBlocks.wait_until_button_pressed(Button.A)
+QuestionTwo()
